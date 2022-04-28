@@ -1,19 +1,12 @@
-from socket import *​
+from socket import *
 
-serverPort = 12000​
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_DGRAM)
+serverSocket.bind(("", serverPort))
 
-serverSocket = socket(AF_INET, SOCK_DGRAM)​
+print ("O servidor está pronto para receber")
 
-serverSocket.bind(('', serverPort))​
-
-print (“O servidor está pronto para receber”)​
-
-while True:​
-
-    message, clientAddress = serverSocket.recvfrom(2048)​
-
-    modifiedMessage = message.decode().upper()​
-
-    serverSocket.sendto(modifiedMessage.encode(),​
-
-                                      clientAddress)
+while True:
+    message, clientAddress = serverSocket.recvfrom(2048)
+    modifiedMessage = message.decode().upper()
+    serverSocket.sendto(modifiedMessage.encode(), clientAddress)
