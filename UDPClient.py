@@ -1,23 +1,12 @@
-from socket import *​
+from socket import *
+serverName = "hostname"
 
-serverName = ‘hostname’​
+serverPort = 12000
+clientSocket = socket(AF_INET, SOCK_DGRAM)
 
-serverPort = 12000​
+message = input("Informe uma frase em minúsculas:")
+clientSocket.sendto(message.encode(),(serverName, serverPort))
 
-clientSocket = socket(AF_INET, ​
-
-                                   SOCK_DGRAM)​
-
-message = raw_input(‘Informe uma frase em minúsculas:’)​
-
-clientSocket.sendto(message.encode(),​
-
-                                      (serverName, serverPort))​
-
-modifiedMessage, serverAddress = ​
-
-                                   clientSocket.recvfrom(2048)​
-
-print modifiedMessage.decode()​
-
+modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+print(modifiedMessage.decode())
 clientSocket.close()
