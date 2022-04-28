@@ -1,11 +1,11 @@
 from socket import *
 
-serverName = ’servername’
+serverName = "servername"
 serverPort = 12000
 clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName,serverPort))
 
-sentence = raw_input(‘Informe uma frase em minúsculas:’)
+sentence = input("Informe uma frase em minúsculas:")
 
 clientSocket.send(sentence.encode())
 modifiedSentence = clientSocket.recv(1024)
